@@ -77,14 +77,15 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- set colro theme
-vim.cmd [[colorscheme tokyonight-moon]]
+vim.cmd [[colorscheme tokyonight-day]]
 
 -- set nvim-tree autoclose
 vim.api.nvim_create_autocmd({"QuitPre"}, {
     callback = function() vim.cmd("NvimTreeClose") end,
 })
 
-require('coc_keymap')
+-- require other configs
+dofile(os.getenv("HOME") .. '/.config/nvim/coc_keymap.lua')
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -108,3 +109,4 @@ return require('packer').startup(function(use)
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use 'karb94/neoscroll.nvim'
 end)
+
