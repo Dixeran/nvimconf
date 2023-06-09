@@ -35,6 +35,21 @@ require('packer').startup(function(use)
   use {'neoclide/coc.nvim', branch = 'release'}
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use 'karb94/neoscroll.nvim'
+  use 'm4xshen/autoclose.nvim'
+  use {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  }
+  use 'dstein64/nvim-scrollview'
+  use "lukas-reineke/indent-blankline.nvim"
+  use { 'ibhagwan/smartyank.nvim' }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use 'rmagatti/auto-session'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -115,6 +130,31 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 }
 
+require("autoclose").setup()
+require('scrollview').setup()
+
+-- indent indicator
+vim.opt.list = true
+
+require("indent_blankline").setup {
+    show_end_of_line = false,
+}
+require('smartyank').setup {}
+require("auto-session").setup {
+  log_level = "error",
+
+  cwd_change_handling = {
+    restore_upcoming_session = true, -- already the default, no need to specify like this, only here as an example
+    pre_cwd_changed_hook = nil, -- already the default, no need to specify like this, only here as an example
+    post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
+      require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
+    end,
+  },
+  pre_save_cmds = {"tabdo NvimTreeClose"},
+  post_restore_cmds = {"tabdo NvimTreeOpen"}
+  
+}
+
 -- set colro theme
 vim.cmd [[colorscheme tokyonight-day]]
 
@@ -125,4 +165,6 @@ vim.api.nvim_create_autocmd({"QuitPre"}, {
 
 -- require other configs
 dofile(os.getenv("HOME") .. '/.config/nvim/coc_keymap.lua')
+dofile(os.getenv("HOME") .. '/.config/nvim/basic_edit.lua')
+dofile(os.getenv("HOME") .. '/.config/nvim/telescope_conf.lua')
 

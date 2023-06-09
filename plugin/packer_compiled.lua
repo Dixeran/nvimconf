@@ -74,6 +74,22 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["auto-session"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/auto-session",
+    url = "https://github.com/rmagatti/auto-session"
+  },
+  ["autoclose.nvim"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/autoclose.nvim",
+    url = "https://github.com/m4xshen/autoclose.nvim"
+  },
+  ["better-escape.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18better_escape\frequire\0" },
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/better-escape.nvim",
+    url = "https://github.com/max397574/better-escape.nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -84,6 +100,11 @@ _G.packer_plugins = {
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -93,6 +114,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
+  },
+  ["nvim-scrollview"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/nvim-scrollview",
+    url = "https://github.com/dstein64/nvim-scrollview"
   },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
@@ -116,6 +142,21 @@ _G.packer_plugins = {
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["smartyank.nvim"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/smartyank.nvim",
+    url = "https://github.com/ibhagwan/smartyank.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/data00/home/yinjianian.0/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
@@ -124,6 +165,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: better-escape.nvim
+time([[Config for better-escape.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18better_escape\frequire\0", "config", "better-escape.nvim")
+time([[Config for better-escape.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
