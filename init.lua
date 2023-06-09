@@ -50,6 +50,14 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'rmagatti/auto-session'
+  use { 'rainbowhxch/accelerated-jk.nvim' }
+  use {
+    'gelguy/wilder.nvim',
+    config = function()
+      -- config goes here
+    end,
+  }
+  use 'tpope/vim-unimpaired'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -154,6 +162,18 @@ require("auto-session").setup {
   post_restore_cmds = {"tabdo NvimTreeOpen"}
   
 }
+require('accelerated-jk').setup()
+
+local wilder = require('wilder')
+wilder.setup({modes = {':', '/', '?'}})
+wilder.set_option('renderer', wilder.renderer_mux({
+  [':'] = wilder.popupmenu_renderer({
+    highlighter = wilder.basic_highlighter(),
+  }),
+  ['/'] = wilder.wildmenu_renderer({
+    highlighter = wilder.basic_highlighter(),
+  }),
+}))
 
 -- set colro theme
 vim.cmd [[colorscheme tokyonight-day]]
