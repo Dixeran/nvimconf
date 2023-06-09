@@ -1,6 +1,45 @@
 print("hello world")
 
-vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- setup plugins
+require('packer').startup(function(use)
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end
+  }
+  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
+  use 'folke/tokyonight.nvim'
+  use {'neoclide/coc.nvim', branch = 'release'}
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use 'karb94/neoscroll.nvim'
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
 require('lualine').setup {
   options = {
@@ -86,27 +125,4 @@ vim.api.nvim_create_autocmd({"QuitPre"}, {
 
 -- require other configs
 dofile(os.getenv("HOME") .. '/.config/nvim/coc_keymap.lua')
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional
-    },
-    config = function()
-      require("nvim-tree").setup {}
-    end
-  }
-  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
-  use 'folke/tokyonight.nvim'
-  use {'neoclide/coc.nvim', branch = 'release'}
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-  use 'karb94/neoscroll.nvim'
-end)
 
